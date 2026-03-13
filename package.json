@@ -1,0 +1,11 @@
+{
+  "name": "ai-devs4",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm -r --parallel dev",
+    "dev:api": "pnpm --filter @ai-devs/api dev",
+    "dev:web": "pnpm --filter @ai-devs/web dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint"
+  }
+}
