@@ -1,7 +1,7 @@
-export interface People {
+export interface PeopleRequest {
   name: string;
   surname: string;
-  gender: "M" | "F";
+  gender: string;
   born: number;
   city: string;
   tags: string[];
