@@ -1,7 +1,7 @@
 import z from "zod";
 
 const TaskResultSchema = z.object({
-  apiKey: z.string(),
+  apikey: z.string(),
   task: z.string(),
   answer: z.unknown(),
 });

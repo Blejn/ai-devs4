@@ -11,7 +11,11 @@
   "dependencies": {
     "@ai-devs/shared": "workspace:*",
     "@anthropic-ai/sdk": "^0.78.0",
+    "@langfuse/otel": "^5.0.1",
+    "@langfuse/tracing": "^5.0.1",
+    "@opentelemetry/sdk-node": "^0.213.0",
     "cors": "^2.8.5",
+    "csv-parse": "^6.1.0",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
     "zod": "^4.3.6"
