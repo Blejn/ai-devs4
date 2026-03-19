@@ -54,3 +54,10 @@ export const filterByCriteria = (people: PersonCSV[]) => {
 export const filterByTransportTag = (people: TaggedPeople) => {
   return people.filter((person) => person.tags.includes("transport"));
 };
+
+export const savePeopleToJson = (people: TaggedPeople) => {
+  fs.writeFileSync(
+    path.join(__dirname, "files", "people.json"),
+    JSON.stringify(people, null, 2),
+  );
+};

@@ -4,6 +4,7 @@ import {
   filterByCriteria,
   filterByTransportTag,
   peopleCsvParser,
+  savePeopleToJson,
 } from "./people.service";
 import { aiClient } from "../common/ai-client";
 import fs from "fs";
@@ -50,6 +51,9 @@ peopleRouter.get("/tag-jobs", async (_req, res) => {
           tags: ["people", "classification"],
         },
       });
+      if (result.parsed_output) {
+        savePeopleToJson(result.parsed_output);
+      }
       return result.parsed_output;
     } catch (error) {
       throw error;
