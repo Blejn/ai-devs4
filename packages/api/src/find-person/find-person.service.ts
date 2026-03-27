@@ -20,19 +20,39 @@ const MODEL = "claude-sonnet-4-5";
 const MAX_ITERATIONS = 10;
 
 for (let i = 0; i < MAX_ITERATIONS; i++) {
+  console.log(`\n--- Iteracja ${i + 1} ---`);
+
   const response = await aiClient.messages.create({
     model: MODEL,
     max_tokens: 10000,
     messages: messages,
     tools: tools,
   });
+
+  console.log(`Stop reason: ${response.stop_reason}`);
+
+  // Loguj tekst jeśli model coś napisał
+  for (const block of response.content) {
+    if (block.type === "text") {
+      console.log(`Model mówi: ${block.text}`);
+    }
+  }
+
   messages.push({ role: "assistant", content: response.content });
+
   if (response.stop_reason !== "tool_use") {
+    console.log("\n--- Agent zakończył ---");
     break;
   }
+
   for (const block of response.content) {
-    if (block.type == "tool_use") {
+    if (block.type === "tool_use") {
+      console.log(`\nWywołuję tool: ${block.name}`);
+      console.log(`Input:`, JSON.stringify(block.input, null, 2));
+
       const result = await executeFunction(block.name, block.input);
+      console.log(`Wynik:`, JSON.stringify(result, null, 2));
+
       messages.push({
         role: "user",
         content: [
