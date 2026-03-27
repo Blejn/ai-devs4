@@ -1,13 +1,13 @@
 import { getDistance } from "../helpers/get-distance";
 import { PersonLocation } from "../types/person-locations";
-import { PowerPlantsWithLocations } from "../types/power-plants";
 import { readLocationOfPlants } from "../helpers/read-location-of-plants";
 
 export const findClosestPersonToPlant = async (person: PersonLocation) => {
   const plants = await readLocationOfPlants();
+  let closestPlant = "";
   let closestDistance = 40000;
 
-  for (const plant of Object.keys(plants)) {
+  for (const plant of Object.keys(plants.power_plants)) {
     const distance = getDistance(
       person.latitude,
       person.longitude,
@@ -16,7 +16,8 @@ export const findClosestPersonToPlant = async (person: PersonLocation) => {
     );
     if (distance < closestDistance) {
       closestDistance = distance;
+      closestPlant = plants.power_plants[plant].code;
     }
   }
-  return closestDistance;
+  return { closestPlant, closestDistance };
 };

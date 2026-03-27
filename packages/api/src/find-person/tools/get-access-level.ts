@@ -5,7 +5,7 @@ const ACCESS_LEVEL_URL = `https://hub.ag3nts.org/api/accesslevel`;
 export const getAccessLevel = async (person: {
   name: string;
   surname: string;
-  birthYear: string;
+  birthYear: number;
 }) => {
   const rawPerson = {
     apikey: API_KEY,
@@ -25,3 +25,5 @@ export const getAccessLevel = async (person: {
   console.log("Access level:", data);
   return data;
 };
+
+getAccessLevel({ name: "Albert", surname: "Skiba", birthYear: 1991 });

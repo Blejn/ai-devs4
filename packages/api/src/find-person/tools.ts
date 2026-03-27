@@ -63,4 +63,17 @@ export const tools: Tool[] = [
       required: ["name", "surname", "accessLevel", "powerPlant"],
     },
   },
+  {
+    name: "readBirthYearForPerson",
+    description:
+      "Read the birth year of a person from file. Requires name and surname.",
+    input_schema: {
+      type: "object",
+      properties: {
+        name: { type: "string", description: "Name of the person" },
+        surname: { type: "string", description: "Surname of the person" },
+      },
+      required: ["name", "surname"],
+    },
+  },
 ];
